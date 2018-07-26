@@ -1,21 +1,10 @@
 #coding=utf-8
 import xml.etree.ElementTree as ET
 
-'''
-fp = open("yololayer.txt","r")
-print "file name:",fp.name
-
-for line in fp.readlines():
-    line = line.strip()
-    print"layer: %s" % (line)
-
-fp.close()
-'''
 clses = ['fire','fire_tiny','fire_medium','fire_large']
 cls = 'fire'
 
-#image_ids = open('/home/tency/caffe/data/fire_data/ImageSets/Main/trainval.txt').read().strip().split()
-image_ids = open('/Users/duchenxi/Downloads/fire_data/ImageSets/Main/trainval.txt').read().strip().split()
+image_ids = open('/home/tency/caffe/data/fire_data/ImageSets/Main/trainval.txt').read().strip().split()
 def convert_imgsize(xmin,ymin,xmax,ymax,norm_w,norm_h):
     width = (ymax-ymin)/norm_w
     height = (xmax-xmin)/norm_h
@@ -28,12 +17,8 @@ def write_file(out_file,area):
     f.close()  
 
 def read_xml(image_id):
-    #in_file = open('/home/tency/caffe/data/fire_data/Annotations/%s.xml'%(image_id))
-    #in_file = open('/home/tency/caffe/data/fire_data/Annotations/001001.xml')
-    in_file = open('/Users/duchenxi/Downloads/fire_data/Annotations/%s.xml'%(image_id))
-    #out_file = open('/home/tency/caffe/data/fire_data/1/%s.xml'%(image_id),'w')
-    #out_file = open('/home/tency/caffe/data/fire_data/1/001001.xml','w')
-    out_file = open('/Users/duchenxi/Downloads/fire_data/1/%s.xml'%(image_id),'w')
+    in_file = open('/home/tency/caffe/data/fire_data/Annotations/%s.xml'%(image_id))
+    out_file = open('/home/tency/caffe/data/fire_data/1/%s.xml'%(image_id),'w')
     #out_file_txt = '/home/tency/caffe/data/fire_data/1/1.txt'
 
     tree = ET.parse(in_file)
@@ -61,9 +46,7 @@ def read_xml(image_id):
                     name.text = 'fire_medium'
                 else:
                     name.text = 'fire_large'
-
-                # print xmin,ymin,xmax,ymax,norm_w,norm_h
-
+                    
     tree.write(out_file)
 
 
